@@ -1,2 +1,6 @@
 downloads
 glove.42B.300d.txt
+venv
+.DS_Store
+__pycache__
+-new

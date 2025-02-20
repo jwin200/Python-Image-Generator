@@ -26,7 +26,7 @@ args = {}
 glove = {}
 model_file = 'glove.42B.300d.txt'
 default_adjectives = ['happy', 'sad', 'confused', 'angry', 'funny']
-default_nouns = ['beach', 'mountain', 'snail', 'tower']
+default_nouns = ['beach', 'mountain', 'snail', 'tower', 'horse']
 
 
 def __parse():
@@ -119,7 +119,6 @@ def combine(images):
         img = Image.composite(img1, img2, mask)
         return img
         
-    
     # Run all images through a random method
     img = None
     for i in images:
@@ -310,6 +309,6 @@ def evaluate_adjective(word):
 
     return params
 
-
+ 
 if __name__ == "__main__":
     __main()

@@ -5,7 +5,7 @@ Spring 2025**
 
 ### Overview
 
-This application takes two or more adjective-noun pairs and generates a corresponding image using the noun as a base image and the adjective to create filters over this base.
+This application takes two or more adjective-noun pairs and generates a corresponding image using nouns as base images and the adjectives to create filters over these pictures. The filtered images are then blended into one final picture.
 
 ### Usage
 
@@ -33,7 +33,7 @@ To specify a folder to download images into, use the `-f` flag:
 
 `python3 main.py -p adj1,noun1 adj2,noun2 -f ~/images_here`
 
-The program defaults to using `/downloads` for this folder.
+The program defaults to creating a `/downloads` folder for this.
 
 ### Adjectives
 
@@ -63,7 +63,15 @@ Note that `happy` and `sad` are mutually exclusive. The image will then be run t
 
 ### Nouns
 
-Any noun (any word at all, even) can be used as a base image. The program takes the noun input from the user and automatically downloads a random image from a Google Search query to the user's disk. Please note that the program does not filter noun inputs whatsoever, any input is directly queried to Google Images and a random image will be selected.
+Any noun (any word at all, even) can be used as a base image, though using any of the following built-in nouns allows for higher quality images:
+
+- Mountain
+- Horse
+- Snail
+- Tower
+- Beach
+
+If the user inputs a noun not in this list, the program automatically downloads a random image from a Google Search query to the user's disk. Please note that the program does not filter noun inputs whatsoever, any input is directly queried to Google Images and a random image will be selected.
 
 
 [^1]: Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/pubs/glove.pdf)
