@@ -7,8 +7,8 @@ Utility functions for Python Image Generator
 import os
 import math
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
 from datetime import datetime
+from PIL import Image, ImageDraw, ImageFilter
 
 
 def pair(arg):
@@ -45,6 +45,7 @@ def load_glove(model_file):
 
 def __stats(length, start, i):
     ''' Display loading messages '''
+
     ave_time = (datetime.now() - start).seconds / i
     seconds_left = round(int(((length - i) * ave_time) / 5)) * 5    # Rounded to nearest 5 seconds
     if seconds_left > 60:
@@ -66,7 +67,7 @@ def generate_gradient(width, height):
     def sigmoid(x, width):
         ''' Logistic function for making a gradient mask '''
         l = 255
-        k = 0.01
+        k = 0.05
         y = width/2
         return l / (1 + math.exp(-k * (x - y)))
 
@@ -79,16 +80,22 @@ def generate_gradient(width, height):
             pixel = (val, val, val)
             mask_data.append(pixel)
     mask.putdata(mask_data)
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+    mask.save('temp/gradient.png')
     return mask
 
 
 def generate_keyhole(width, height):
     ''' Generate a keyhole mask '''
-    
+
     mask = Image.new('L', (width, height), 0)
     draw = ImageDraw.Draw(mask)
     c1 = (width / 3, height / 4)
     c2 = ((width * 2) / 3, (height * 3) / 4)
     draw.ellipse((c1, c2), fill=255)
     mask = mask.filter(ImageFilter.GaussianBlur(10))
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+    mask.save('temp/keyhole.png')
     return mask
