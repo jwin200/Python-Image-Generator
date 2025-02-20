@@ -11,11 +11,11 @@ try:
     import requests
     import argparse
     import numpy as np
+    from utils import *
     from io import BytesIO
-    from utils import load_glove, pair
     from bs4 import BeautifulSoup as bs
     from perlin_noise import PerlinNoise
-    from PIL import Image, ImageFilter, ImageEnhance, ImageDraw
+    from PIL import Image, ImageFilter, ImageEnhance
 except ImportError:
     print("Missing necessary dependencies! Install with: ")
     print("pip3 install -r requirements.txt")
@@ -60,7 +60,7 @@ def __main():
 
     # Throw error if not enough pairs are given
     if len(args['pairs']) < 2:
-        print("Please enter two or more ajective-noun pairs!")
+        print("Please enter two or more adjective-noun pairs!")
         exit(1)
 
     # Retrieve base images and evaluate adjectives
@@ -103,12 +103,9 @@ def combine(images):
     
     def keyhole(img1, img2):
         # View one image through a circular mask of the other
-        mask = Image.new('L', img2.size, 0)
-        draw = ImageDraw.Draw(mask)
-        c1 = (img2.size[0]/3, img2.size[1]/4)
-        c2 = ((img2.size[0]*2)/3, (img2.size[1]*3)/4)
-        draw.ellipse((c1, c2), fill=255)
-        mask = mask.filter(ImageFilter.GaussianBlur(10))
+        img1 = img1.resize(img2.size)
+        width, height = img2.size
+        mask = generate_keyhole(width, height)
 
         img = Image.composite(img1, img2, mask)
         return img
@@ -116,8 +113,8 @@ def combine(images):
     def gradient(img1, img2):
         # Kind of a 'sweep' filter, horizontal gradient mask
         img1 = img1.resize(img2.size)
-        mask = Image.open('default_images/gradient.png')
-        mask = mask.convert(mode='L').resize(img1.size)
+        width, height = img1.size
+        mask = generate_gradient(width, height).convert(mode='L')
 
         img = Image.composite(img1, img2, mask)
         return img
