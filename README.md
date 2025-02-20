@@ -1,7 +1,8 @@
 # Python Image Generator
-**Jonah Winchell
-Code as a Liberal Art
-Spring 2025**
+
+**Jonah Winchell**
+**Code as a Liberal Art**
+**Spring 2025**
 
 ### Overview
 
@@ -9,7 +10,7 @@ This application takes two or more adjective-noun pairs and generates a correspo
 
 ### Usage
 
-The user must first install all necessary Python dependencies. Remember to use a Python virtual environment! Package installation can be done with the following command:
+After downloading this package, the user must first install all necessary Python dependencies. Remember to use a Python virtual environment! Final installation can be done with the following command:
 
 `pip3 install -r requirements.txt`
 

@@ -1,12 +1,12 @@
 '''
 Jonah Winchell
 Code as a Liberal Art, Spring 2025
-Utility methods for Python Image Generator
+Utility functions for Python Image Generator
 '''
 
 import os
-import datetime
 import numpy as np
+from datetime import datetime
 
 
 def pair(arg):

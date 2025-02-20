@@ -81,8 +81,11 @@ def __main():
     final_img = combine(filtered_images)
 
     # Save final image
+    path = f'{os.getcwd()}/final'
+    if not os.path.exists(path):
+        os.makedirs(path)
     final_img = final_img.convert('RGB')
-    final_img.save(f'{pairs[0][1]}-final.jpg')
+    final_img.save(f'final/{pairs[0][1]}.jpg')
 
     
 def combine(images):
