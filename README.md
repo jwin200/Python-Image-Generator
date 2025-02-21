@@ -25,7 +25,7 @@ If you want to utilize non-default adjectives (see: **Adjectives**) with the Glo
     - `requirements.txt`
     - `README.md`
 
-As well as a folder named `default_images`. From here, the user may run the program with the following:
+As well as a folder named `default_images/`. From here, the user may run the program with the following:
 
 `python3 main.py -p adj1,noun1 adj2,noun2`
 
@@ -34,7 +34,7 @@ To specify a folder to download images into, use the `-f` flag:
 
 `python3 main.py -p adj1,noun1 adj2,noun2 -f ~/images_here`
 
-The program defaults to creating a `/downloads` folder for this.
+The program defaults to creating a `downloads/` folder for this and a `temp/` folder for intermediate image generation. The final image can be found in the `final/` folder.
 
 ### Adjectives
 

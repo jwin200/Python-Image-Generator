@@ -62,12 +62,12 @@ def __stats(length, start, i):
     
 
 def generate_gradient(width, height):
-    """ Generate a vertical gradient """
+    """ Generate a horizontal gradient """
 
     def sigmoid(x, width):
-        ''' Logistic function for making a gradient mask '''
+        ''' Gradient value is a logistic function of x '''
         l = 255
-        k = 0.05
+        k = 0.02
         y = width/2
         return l / (1 + math.exp(-k * (x - y)))
 

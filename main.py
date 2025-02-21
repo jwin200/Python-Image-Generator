@@ -1,4 +1,11 @@
 '''
+    ____                              ______                           __  _           
+   /  _/___ ___  ____ _____ ____     / ____/__  ____  ___  _________ _/ /_(_)___  ____ 
+   / // __ `__ \/ __ `/ __ `/ _ \   / / __/ _ \/ __ \/ _ \/ ___/ __ `/ __/ / __ \/ __ \
+ _/ // / / / / / /_/ / /_/ /  __/  / /_/ /  __/ / / /  __/ /  / /_/ / /_/ / /_/ / / / /
+/___/_/ /_/ /_/\__,_/\__, /\___/   \____/\___/_/ /_/\___/_/   \__,_/\__/_/\____/_/ /_/ 
+                    /____/                                                             
+
 Jonah Winchell
 Code as a Liberal Art, Spring 2025
 Project 1: Image Generator
@@ -76,8 +83,8 @@ def __main():
 
     # Filter and combine images
     filtered_images = []
-    for description in inputs.values():
-        filtered_images.append(filter_image(description))
+    for noun, description in inputs.items():
+        filtered_images.append(filter_image(description, noun))
     final_img = combine(filtered_images)
 
     # Save final image
@@ -132,7 +139,7 @@ def combine(images):
     return img
 
 
-def filter_image(desc):
+def filter_image(desc, noun):
     ''' Take complete image descriptions and apply custom filters '''
     adjective, emotions = list(desc[0].items())[0]
     image_path = desc[1].split('.')[0]
@@ -222,7 +229,7 @@ def filter_image(desc):
     img = img.convert('RGB')
     if not os.path.exists('temp'):
         os.makedirs('temp')
-    img.save(f'temp/temp-new.jpg')
+    img.save(f'temp/{noun}-new.jpg')
     
     return img
 
