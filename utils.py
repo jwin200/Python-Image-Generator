@@ -71,7 +71,7 @@ def generate_gradient(width, height):
         y = width/2
         return l / (1 + math.exp(-k * (x - y)))
 
-    # Pixel value depends on x value, not y
+    # Assign pixel value based on horizontal position
     mask = Image.new('RGBA', (width, height))
     mask_data = []
     for y in range(height):
@@ -80,9 +80,7 @@ def generate_gradient(width, height):
             pixel = (val, val, val)
             mask_data.append(pixel)
     mask.putdata(mask_data)
-    if not os.path.exists('temp'):
-        os.makedirs('temp')
-    mask.save('temp/gradient.png')
+    mask.save(f'{os.getcwd()}/temp/gradient.png')
     return mask
 
 
@@ -95,7 +93,5 @@ def generate_keyhole(width, height):
     c2 = ((width * 2) / 3, (height * 3) / 4)
     draw.ellipse((c1, c2), fill=255)
     mask = mask.filter(ImageFilter.GaussianBlur(10))
-    if not os.path.exists('temp'):
-        os.makedirs('temp')
-    mask.save('temp/keyhole.png')
+    mask.save(f'{os.getcwd()}/temp/keyhole.png')
     return mask

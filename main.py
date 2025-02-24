@@ -1,4 +1,4 @@
-'''
+r'''
     ____                              ______                           __  _           
    /  _/___ ___  ____ _____ ____     / ____/__  ____  ___  _________ _/ /_(_)___  ____ 
    / // __ `__ \/ __ `/ __ `/ _ \   / / __/ _ \/ __ \/ _ \/ ___/ __ `/ __/ / __ \/ __ \
@@ -48,13 +48,6 @@ def __parse():
                         nargs='+',
                         help='List of adjective-noun pairs. In form of "-p happy,watermelon sad,geriatric"')
     
-    parser.add_argument('-f', '--folder',
-                        metavar='F',
-                        dest='folder',
-                        nargs='?',
-                        default='downloads',
-                        help='Optional name of desired images folder, defaults to "downloads"')
-    
     return vars(parser.parse_args())
 
 
@@ -69,6 +62,17 @@ def __main():
     if len(args['pairs']) < 2:
         print("Please enter two or more adjective-noun pairs!")
         exit(1)
+
+    # Create necessary folders
+    path = f'{os.getcwd()}/downloads'
+    if not os.path.exists(path):
+        os.makedirs(path)
+    path = f'{os.getcwd()}/temp'
+    if not os.path.exists(path):
+        os.makedirs(path)
+    path = f'{os.getcwd()}/final'
+    if not os.path.exists(path):
+        os.makedirs(path)
 
     # Retrieve base images and evaluate adjectives
     pairs = args['pairs']
@@ -88,9 +92,6 @@ def __main():
     final_img = combine(filtered_images)
 
     # Save final image
-    path = f'{os.getcwd()}/final'
-    if not os.path.exists(path):
-        os.makedirs(path)
     final_img = final_img.convert('RGB')
     final_img.save(f'{path}/{pairs[0][1]}.jpg')
 
@@ -225,10 +226,8 @@ def filter_image(desc, noun):
         if intensity != 0.0:
             img = eval(f'{e}(img, intensity)')
 
-    # Save final image
+    # Save filtered image
     img = img.convert('RGB')
-    if not os.path.exists('temp'):
-        os.makedirs('temp')
     img.save(f'temp/{noun}-new.jpg')
     
     return img
@@ -259,15 +258,11 @@ def download_images(query):
 
     # Save image
     image = requests.get(image_url).content
-    path = f'{os.getcwd()}/{args["folder"]}'
-    final_path = f'{path}/{query}.jpg'
-    if not os.path.exists(path):
-        os.makedirs(path)
-
+    path = f'{os.getcwd()}/downloads/{query}.jpg'
     img = Image.open(BytesIO(image)).convert(mode='RGB')
-    img.save(final_path)
+    img.save(path)
 
-    return final_path
+    return path
 
 
 def evaluate_adjective(word):
