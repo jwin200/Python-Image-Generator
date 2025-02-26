@@ -9,6 +9,7 @@ r'''
 Jonah Winchell
 Code as a Liberal Art, Spring 2025
 Project 1: Image Generator
+v. 1.0.0
 '''
 
 try:
@@ -64,12 +65,10 @@ def __main():
         exit(1)
 
     # Create necessary folders
-    path = f'{os.getcwd()}/downloads'
-    if not os.path.exists(path):
-        os.makedirs(path)
-    path = f'{os.getcwd()}/temp'
-    if not os.path.exists(path):
-        os.makedirs(path)
+    if not os.path.exists(f'{os.getcwd()}/downloads'):
+        os.makedirs(f'{os.getcwd()}/downloads')
+    if not os.path.exists(f'{os.getcwd()}/temp'):
+        os.makedirs(f'{os.getcwd()}/temp')
     path = f'{os.getcwd()}/final'
     if not os.path.exists(path):
         os.makedirs(path)
