@@ -3,6 +3,7 @@
 **Jonah Winchell**
 **Code as a Liberal Art**
 **Spring 2025**
+**v. 1.0.0**
 
 ### Overview
 
@@ -29,12 +30,11 @@ As well as a folder named `default_images/`. From here, the user may run the pro
 
 `python3 main.py -p adj1,noun1 adj2,noun2`
 
-and so on with any number of adjective-noun pairs.
-To specify a folder to download images into, use the `-f` flag:
+and so on with any number of adjective-noun pairs. To specify a folder for your completed image, use the `-f` flag:
 
-`python3 main.py -p adj1,noun1 adj2,noun2 -f ~/images_here`
+`python3 main.py -p adj1,noun1 adj2,noun2 -f images`
 
-The program defaults to creating a `downloads/` folder for this and a `temp/` folder for intermediate image generation. The final image can be found in the `final/` folder.
+As the program runs, it will create a local `temp` folder where intermediate images will be stored. You can delete this folder after every run or use it to view these incomplete images and masks.
 
 ### Adjectives
 

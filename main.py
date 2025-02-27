@@ -9,7 +9,7 @@ r'''
 Jonah Winchell
 Code as a Liberal Art, Spring 2025
 Project 1: Image Generator
-v. 1.0.0
+v. 1.0.1
 '''
 
 try:
@@ -49,6 +49,13 @@ def __parse():
                         nargs='+',
                         help='List of adjective-noun pairs. In form of "-p happy,watermelon sad,geriatric"')
     
+    parser.add_argument('-f', '--folder',
+                        metavar='F',
+                        dest='folder',
+                        nargs='?',
+                        default='final',
+                        help='Optional name of desired folder for finished image, defaults to "final"')
+    
     return vars(parser.parse_args())
 
 
@@ -65,11 +72,9 @@ def __main():
         exit(1)
 
     # Create necessary folders
-    if not os.path.exists(f'{os.getcwd()}/downloads'):
-        os.makedirs(f'{os.getcwd()}/downloads')
     if not os.path.exists(f'{os.getcwd()}/temp'):
         os.makedirs(f'{os.getcwd()}/temp')
-    path = f'{os.getcwd()}/final'
+    path = f'{os.getcwd()}/{args['folder']}'
     if not os.path.exists(path):
         os.makedirs(path)
 
@@ -257,7 +262,7 @@ def download_images(query):
 
     # Save image
     image = requests.get(image_url).content
-    path = f'{os.getcwd()}/downloads/{query}.jpg'
+    path = f'{os.getcwd()}/temp/{query}.jpg'
     img = Image.open(BytesIO(image)).convert(mode='RGB')
     img.save(path)
 

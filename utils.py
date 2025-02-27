@@ -62,13 +62,13 @@ def __stats(length, start, i):
     
 
 def generate_gradient(width, height):
-    """ Generate a horizontal gradient """
+    ''' Generate a horizontal gradient '''
 
     def sigmoid(x, width):
         ''' Gradient value is a logistic function of x '''
-        l = 255
-        k = 0.02
-        y = width/2
+        l = 255         # Max value
+        k = 0.02        # Width of gradient factor
+        y = width/2     # Center of gradient
         return l / (1 + math.exp(-k * (x - y)))
 
     # Assign pixel value based on horizontal position
@@ -89,9 +89,9 @@ def generate_keyhole(width, height):
 
     mask = Image.new('L', (width, height), 0)
     draw = ImageDraw.Draw(mask)
-    c1 = (width / 3, height / 4)
-    c2 = ((width * 2) / 3, (height * 3) / 4)
-    draw.ellipse((c1, c2), fill=255)
+    c1 = (width / 3, height / 4)                # Bottom left corner
+    c2 = ((width * 2) / 3, (height * 3) / 4)    # Top right corner
+    draw.ellipse((c1, c2), fill=255)            # Black ellipse within corners
     mask = mask.filter(ImageFilter.GaussianBlur(10))
     mask.save(f'{os.getcwd()}/temp/keyhole.png')
     return mask
