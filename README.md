@@ -3,7 +3,6 @@
 **Jonah Winchell**
 **Code as a Liberal Art**
 **Spring 2025**
-**v. 1.0.0**
 
 ### Overview
 

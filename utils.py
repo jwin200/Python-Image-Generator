@@ -53,7 +53,7 @@ def __stats(length, start, i):
     elif seconds_left > 5:
         message = f'About {seconds_left} seconds remaining'
     else:
-        message = f'Almost finished laoding'
+        message = f'Almost finished loading'
 
     print(f'\tLoading GloVe language model...          \n'
           f'\t{round((i / length) * 100, 3)}% done     \n'
